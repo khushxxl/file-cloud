@@ -16,7 +16,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
-import { PencilIcon, TrashIcon } from "lucide-react";
+import { PencilIcon, ShareIcon, TrashIcon } from "lucide-react";
 import { FileType } from "@/typings";
 import { useAppStore } from "@/store";
 import { DeleteModal } from "../DeleteModal";
@@ -84,35 +84,9 @@ export function DataTable<TData, TValue>({
                 data-state={row.getIsSelected() && "selected"}
               >
                 <DeleteModal />
-
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
-                    {cell.column.id == "timestamp" ? (
-                      <div className="flex flex-col">
-                        {/* <div className="text-sm">
-                          {(cell.getValue() as Date).toLocaleDateString()}
-                        </div>
-
-                        <div className="text-xs text-gray-500">
-                          {(cell.getValue() as Date).toLocaleTimeString()}
-                        </div> */}
-                      </div>
-                    ) : cell.column.id == "fileName" ? (
-                      <p
-                        onClick={() => {
-                          openRenameModal(
-                            (row.original as FileType).id,
-                            (row.original as FileType).fileName
-                          );
-                        }}
-                        className="flex flex-row underline items-center text-blue-500 hover:cursor-pointer"
-                      >
-                        {cell.getValue() as string}{" "}
-                        <PencilIcon size={15} className="ml-2" />
-                      </p>
-                    ) : (
-                      flexRender(cell.column.columnDef.cell, cell.getContext())
-                    )}
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
 
@@ -127,6 +101,14 @@ export function DataTable<TData, TValue>({
                     <TrashIcon size={20} />
                   </Button>
                 </TableCell>
+
+                {/* <TableCell key={(row.original as FileType).downloadURL}>
+                  <Button variant={"outline"} onClick={() => {
+
+                  }} className="">
+                    <ShareIcon size={20} />
+                  </Button>
+                </TableCell> */}
               </TableRow>
             ))
           ) : (

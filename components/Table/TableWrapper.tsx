@@ -31,7 +31,7 @@ const TableWrapper = ({ skeletonFiles }: { skeletonFiles: FileType[] }) => {
       id: doc.id,
       fullName: doc.data().fullName,
       fileName: doc.data().fileName || doc.id,
-      timeStamp: new Date(doc.data().timestamp?.seconds * 1000) || undefined,
+      timestamp: new Date(doc.data().timestamp?.seconds * 1000) || undefined,
       downloadURL: doc.data().downloadURL,
       type: doc.data().type,
       size: doc.data().size,

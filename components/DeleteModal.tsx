@@ -53,9 +53,6 @@ export function DeleteModal() {
         setisDeleteModalOpen(isOpen);
       }}
     >
-      <DialogTrigger asChild>
-        <Button variant="outline">Share</Button>
-      </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Delete File</DialogTitle>
