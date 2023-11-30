@@ -29,7 +29,7 @@ async function DashBoard() {
 
       <section className=" container space-y-5">
         <h2 className="font-bold">All Files</h2>
-        <div>
+        <div className="mt-20">
           <TableWrapper skeletonFiles={skeletonFiles} />
         </div>
       </section>

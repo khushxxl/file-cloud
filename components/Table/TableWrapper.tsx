@@ -75,7 +75,9 @@ const TableWrapper = ({ skeletonFiles }: { skeletonFiles: FileType[] }) => {
       <Button onClick={() => setSort(sort == "desc" ? "asc" : "desc")}>
         Sort by {sort == "desc" ? "Newest" : "Oldest"}
       </Button>
-      <DataTable columns={columns} data={initialFiles} />
+      <div className="mt-10">
+        <DataTable columns={columns} data={initialFiles} />
+      </div>
     </div>
   );
 };
