@@ -1,6 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
   return (
@@ -27,7 +29,7 @@ export default function Home() {
             className="flex cursor-pointer bg-blue-500 p-5 w-fit"
             href={"/dashboard"}
           >
-            Try it for free! <ArrowRight className="ml-10" />
+            Click here to begin! <ArrowRight className="ml-10" />
           </Link>
         </div>
 

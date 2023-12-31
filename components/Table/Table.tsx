@@ -16,10 +16,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
-import { PencilIcon, ShareIcon, TrashIcon } from "lucide-react";
+import { CopyIcon, PencilIcon, ShareIcon, TrashIcon } from "lucide-react";
 import { FileType } from "@/typings";
 import { useAppStore } from "@/store";
 import { DeleteModal } from "../DeleteModal";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -54,9 +57,26 @@ export function DataTable<TData, TValue>({
     setFileName(fileName);
     setisRenameModalOpen(true);
   };
+  const [copyText, setcopyText] = useState("");
+  const handleCopyClick = (text: string) => {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+
+    // Append the textarea to the DOM
+    document.body.appendChild(textarea);
+
+    // Select the text and copy it
+    textarea.select();
+    document.execCommand("copy");
+
+    // Remove the temporary textarea
+    document.body.removeChild(textarea);
+    toast("Shareable Link has been Copied");
+  };
 
   return (
     <div className="rounded-md border">
+      <ToastContainer />
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -102,6 +122,18 @@ export function DataTable<TData, TValue>({
                   </Button>
                 </TableCell>
 
+                <TableCell key={(row.original as FileType).id}>
+                  <Button
+                    variant={"outline"}
+                    onClick={() => {
+                      console.log((row.original as FileType).downloadURL);
+                      handleCopyClick((row.original as FileType).downloadURL);
+                    }}
+                    className=""
+                  >
+                    <CopyIcon size={20} />
+                  </Button>
+                </TableCell>
                 {/* <TableCell key={(row.original as FileType).downloadURL}>
                   <Button variant={"outline"} onClick={() => {
 
